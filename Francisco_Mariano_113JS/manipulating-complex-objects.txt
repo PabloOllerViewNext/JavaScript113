@@ -1,0 +1,24 @@
+const myMusic = [
+  {
+    "artist": "Billy Joel",
+    "title": "Piano Man",
+    "release_year": 1973,
+    "formats": [
+      "CD",
+      "8T",
+      "LP"
+    ],
+    "gold": true
+  },
+  {
+    "artist": "Jimmy Neutron",
+    "title": "Atomic-flick",
+    "release_year": 2007,
+    "formats": [
+      "MP7",
+      "Blue-Ray",
+      "CashMoneyAP"
+    ],
+    "gold": true
+  }
+];
