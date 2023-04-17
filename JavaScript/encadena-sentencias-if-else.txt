@@ -1,0 +1,19 @@
+function testSize(num) {
+  // Cambia solo el código debajo de esta línea
+  var retorno;
+  if(num < 5){
+    retorno = "Tiny";  
+  } else if(num < 10){
+    retorno = "Small";
+  } else if(num < 15){
+    retorno = "Medium";  
+  } else if(num < 20){
+    retorno = "Large";  
+  }else{
+    retorno = "Huge";  
+  }
+  return retorno;
+ // Cambia solo el código encima de esta línea
+}
+
+testSize(7);

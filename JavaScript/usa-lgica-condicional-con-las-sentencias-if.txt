@@ -1,0 +1,12 @@
+function trueOrFalse(wasThatTrue) {
+  // Cambia solo el código debajo de esta línea
+  var sol ="";
+  if(wasThatTrue){
+    sol="Yes, that was true";
+  } else {
+    sol="No, that was false";
+  }
+  return sol;
+  // Cambia solo el código encima de esta línea
+
+}
