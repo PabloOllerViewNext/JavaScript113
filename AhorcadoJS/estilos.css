@@ -1,0 +1,185 @@
+*{
+    border-radius: 3px;
+}
+
+#dibujo {
+    background-image: url("img/ahorcadoVacio.PNG");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 70vw;
+    height: 60vh;
+}
+
+.menuInferior {
+    gap: 10px;
+    display: flex;
+    justify-content: center;
+    margin-left: -2% !important;
+}
+
+.puntos{
+    background-color: lightgreen;
+    font-weight: bold;
+    
+}
+
+#puntosActuales{
+    background-color: white;
+}
+
+.intentos {
+    background-color: cornflowerblue;
+    border-radius: 5px;
+    font-weight: bold;
+    width: 20vw;
+    margin-left: 15%;
+    display: grid;
+    justify-content: left;
+    align-items: center;
+}
+
+.intentos h3 span,#puntosActuales{
+    background-color: white;
+    padding: 3px;
+    padding: 0px 5px 0px 5px !important;
+    border-radius: 4px;
+    font-weight: 100;
+}
+
+.reset {
+    background-color: lightcoral;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+#letras {
+    display: flex;
+    gap: 3px;
+    font-size: 0px;
+}
+
+#letras>div {
+    border: 2px solid black;
+    border-radius: 3px;
+    padding: 9px;
+    width: 5vw;
+    height: 10vh;
+    transition: all 500ms;
+    text-align: center;
+}
+
+#letraElegida {
+    width: 72px;
+    text-align: center;
+    background-color: lightgreen;
+    border: 1px solid black;
+    border-radius: 3px;
+    font-size: 2em;
+    text-transform: uppercase;
+}
+
+table {
+    text-transform: uppercase;
+    width: 20vw;
+}
+
+table tr p {
+    font-size: 1.4em;
+}
+
+
+.contenedorLetras {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10%;
+}
+
+.aciertoLetra {
+    font-size: 30px;
+    background-color: lightgreen;
+    font-weight: bold;
+    color: white;
+    -webkit-animation: bounce-top 0.9s both;
+    animation: bounce-top 700ms both;
+    text-align: center;
+}
+
+.gameOver {
+    font-size: 30px;
+    background-color: lightcoral;
+    font-weight: bold;
+    color: white;
+    animation: bounce-top 700ms both;
+}
+
+#reset {
+    text-decoration: none;
+    color: black;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+
+@keyframes bounce-top {
+    0% {
+        -webkit-transform: translateY(-45px);
+        transform: translateY(-45px);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+        opacity: 1;
+    }
+
+    24% {
+        opacity: 1;
+    }
+
+    40% {
+        -webkit-transform: translateY(-24px);
+        transform: translateY(-24px);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+
+    65% {
+        -webkit-transform: translateY(-12px);
+        transform: translateY(-12px);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+
+    82% {
+        -webkit-transform: translateY(-6px);
+        transform: translateY(-6px);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+
+    93% {
+        -webkit-transform: translateY(-4px);
+        transform: translateY(-4px);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+
+    25%,
+    55%,
+    75%,
+    87% {
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+    }
+
+    100% {
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+        opacity: 1;
+    }
+}
+
+
