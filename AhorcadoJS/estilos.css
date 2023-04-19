@@ -2,6 +2,11 @@
     border-radius: 3px;
 }
 
+body{
+    overflow-x: hidden;
+    padding-right: 7%;
+}
+
 #dibujo {
     background-image: url("img/ahorcadoVacio.PNG");
     background-repeat: no-repeat;
@@ -9,6 +14,15 @@
     background-size: contain;
     width: 70vw;
     height: 60vh;
+}
+
+.partidasGanadas{
+    background-color: lightgreen;
+    font-weight: bold;
+    width: 20vw;
+    display: grid;
+    justify-content: left;
+    align-items: center;
 }
 
 .menuInferior {
@@ -30,16 +44,14 @@
 
 .intentos {
     background-color: cornflowerblue;
-    border-radius: 5px;
     font-weight: bold;
-    width: 20vw;
-    margin-left: 15%;
+    width: 21vw;
     display: grid;
     justify-content: left;
     align-items: center;
 }
 
-.intentos h3 span,#puntosActuales{
+.intentos h3 span,#puntosActuales,#PG{
     background-color: white;
     padding: 3px;
     padding: 0px 5px 0px 5px !important;
@@ -70,10 +82,10 @@
 }
 
 #letraElegida {
-    width: 72px;
+    width: 100px;
     text-align: center;
-    background-color: lightgreen;
-    border: 1px solid black;
+    background-color: lightyellow;
+    border: 3px solid black;
     border-radius: 3px;
     font-size: 2em;
     text-transform: uppercase;
@@ -90,10 +102,9 @@ table tr p {
 
 
 .contenedorLetras {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 10%;
+    display: grid;
+    place-content: center;
+    gap: 40px;
 }
 
 .aciertoLetra {
