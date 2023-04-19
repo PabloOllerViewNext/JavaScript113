@@ -36,43 +36,34 @@ if (typeof (Storage) !== "undefined") {
     function checkLetra() {
         var posicionLetra = [];
         var checkAcierto = false;
-        var ltr;
         var encontrado = false;
         letra = document.getElementById("letraElegida").value;
+        document.getElementById("letraElegida").value = "";
+        document.getElementById("letraElegida").removeAttribute("placeholder");
 
-        // comprobamos si letraElegida en la palabra, si así es,hacemos push de la posición en la que se encuentra.
+        // comprobamos si letraElegida está en la palabra, si así es,hacemos push de la posición en la que se encuentra.
         for (var i = 0; i < palabra.length; i++) {
             if (palabra[i] == (letra.toLowerCase())) {
-                debugger;
                 posicionLetra.push(i);
                 checkAcierto = true;
-                ltr = i;
-                if(!encontrado && letrasArray.indexOf(palabra[i])==-1){
+
+                // verifica si la letra actual no ha sido encontrada previamente. Si encontrado es verdadero, significa que ya se ha encontrado la letra anteriormente
+                if (!encontrado && letrasArray.indexOf(palabra[i]) == -1) {
                     letrasArray.push(palabra[i]);
-                    encontrado=true;
+                    encontrado = true;
                     actualizarPuntos(true);
                 }
-                
+
             }
 
         }
 
-        console.log(posicionLetra[0]);
+
+        // mostramos la letra si es acertada, añadiendole la clase .aciertoLetra dentro de la función cambiarLetras().
         if (checkAcierto) {
             cambiarLetras(posicionLetra);
-
-            // Seleccionar los divs que tienen la clase .aciertoLetra
-            const aciertoLetras = document.querySelectorAll(".aciertoLetra");
-
-
-            debugger;
-
-            // Comprobar si el contenido del div contiene la letra buscada
-            if (posicionLetra.indexOf(ltr) == -1) {
-            }
-
-
         } else {
+        // si no es acertada, mostramos por pantalla la letra erronea. También restamos -1 a la puntuación si es != 0.
             document.getElementById("letrasFalladas").innerHTML += (letra + " - ")
 
             if (parseInt(document.getElementById("puntosActuales").innerHTML) != 0) {
@@ -127,12 +118,11 @@ if (typeof (Storage) !== "undefined") {
     function comprobarGanador() {
         hijosAcertados = true;
 
-        // comprobamos que todas las letras tengan la clase aciertoLetra, lo cual significa que ha ganado
+        // comprobamos que todas las letras tengan la clase .aciertoLetra, lo cual significa que ha ganado
         div = document.getElementById("letras");
         hijos = div.querySelectorAll("*");
         for (let i = 0; i < hijos.length; i++) {
             if (!hijos[i].classList.contains("aciertoLetra")) {
-
                 hijosAcertados = false;
             }
         }
@@ -149,7 +139,7 @@ if (typeof (Storage) !== "undefined") {
             localStorage.setItem("PG", partidas);
         }
         document.getElementById("dibujo").style.backgroundImage = "url('img/ahorcadoGG.PNG')";
-        document.getElementById("btnProbar").disabled = true;
+        document.getElementById("letraElegida").disabled = true;
     }
 
 
@@ -162,7 +152,6 @@ if (typeof (Storage) !== "undefined") {
         }
 
         document.getElementById("dibujo").style.backgroundImage = "url('img/ahorcadoIn.PNG')";
-        document.getElementById("btnProbar").disabled = true;
         document.getElementById("letraElegida").disabled = true;
     }
 }
