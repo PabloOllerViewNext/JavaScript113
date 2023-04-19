@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JUEGO DEL AHORCADO</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- Miguel Rosas Granados -->
+
+    <!-- 
+        POSIBLES MEJORAS -> Arreglar que salgan los intentos antes de darle al primer boton.
+    -->
+
+    <!-- 
+        OBSERVACIONES -> En el caso que la palabra sea lo suficientemente larga (a partir de 17 caracteres ya añadido el 50% de intentos extras)
+                         es imposible perder todos los intentos y por lo tanto es imposible perder la partida.
+    -->
+
+    <!-- 
+        ENUNCIADO:
+        
+        Ahorcado: 
+        Seleccionaremos un diccionario de 100 palabras, en el cual al usuario se le dará un 50% mas de oportunidades de las letras que tenga la palabra,  
+
+        Ejemplo: 
+        Si una palabra tiene 8 letras, el usuario tendrá 12 oportunidades para averiguar cual es la palabra secreta. 
+        Por cada letra que el usuario acierte se le sumara 1 punto y por cada letra que el usuario falle se le restara un punto de sus marcados, 
+        siendo (0) el valor mas bajo que pueda tener en su marcador.  
+        ¡El Objetivo de este ejercicio es trabajar, cadena de caracteres, bucles, variables numéricas y variables de tipo cadena¡ 
+    -->
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Jost:ital@1&display=swap');
+
+        body {
+            font-family: 'Jost', sans-serif;
+            text-align: center;
+        }
+
+        #palabra {
+            font-size: 2em;
+        }
+
+        #contenedor{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #letras {
+            width: 450px;
+        }
+
+        .caracteres {
+            font-size: 1.5em;
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            border: 1px solid black;
+            border-radius: 5px !important;
+            cursor: pointer;
+            transition: all 500ms;
+        }
+
+        .caracteres:hover {
+            background-color: #dee2e6;
+        }
+
+        .caracteres.usada {
+            background-color: #757575;
+            color: white;
+            pointer-events: none;
+        }
+
+        .caracteres.acertada {
+            background-color: #43a047;
+            color: white;
+            cursor: default;
+        }
+    </style>
+
+</head>
+<body>
+
+    <h1 class="mt-4 text-primary">JUEGO DEL AHORCADO</h1>
+
+    <div id="palabra" class="mt-4"></div>
+
+    <div id="contenedor" class="mt-4">
+        <div id="letras"></div>
+    </div>
+
+    <h5 id="intentos" class="mt-3">Número de intentos: </h5>
+    <button type="button" class="btn btn-danger mt-3" onclick="location.reload()">Pasa palabra</button>
+
+    <!-- Importo sweetalert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        
+        /* Genero un array con tantas palabras como quiera */
+        const diccionario = ['amigo', 'arbol', 'bebe', 'casa', 'dia', 'elefante', 'fresa', 
+                            'gato', 'huevo', 'iglesia',  'jardin', 'kilometro', 'limon', 
+                            'manzana', 'nube', 'ojo', 'perro', 'queso', 'raton', 'sol',  
+                            'television', 'uva', 'viento', 'zapato', 'abeja', 'barco', 
+                            'camino', 'diente', 'escuela', 'flor',  'guitarra', 'helado', 
+                            'iglu', 'jirafa', 'kilo', 'luna', 'maleta', 'nido', 'oso', 'pan',
+                            'pato',  'quesadilla', 'reloj', 'sombrero', 'tortuga', 'pantalla',
+                            'universidad', 'vacaciones', 'xilofono', 'yogur', 'zanahoria', 
+                            'aguila',  'baloncesto', 'cafe', 'dinero', 'eleccion', 'fruta', 
+                            'gimnasio', 'hueso', 'igualdad', 'juguete', 'kiwi',  'leon', 
+                            'martillo', 'nuez', 'esternocleidomastoideo', 'pajaro', 'manguera', 
+                            'biblioteca', 'silla', 'tigre', 'estrella',  'vaca', 'zanja', 'anillo', 
+                            'bicicleta', 'computadora', 'dragon', 'popular', 'fuego', 'galleta', 
+                            'genero','mesa', 'jugueteria', 'karate', 'libro', 'montana', 
+                            'numero','oreja', 'pelota', 'cheddar', 'relampago', 'goma', 'borrar',  
+                            'sandia','tarta','unicornio', 'volcan', 'mariposa', 'patata'];
+    
+        /* Se genera una palabra aleatoria entre todas las del array */
+        let palabraAleatoria = diccionario[Math.floor(Math.random() * diccionario.length)];
+        /* Obtiene el div donde se encuentra la palabra */
+        let palabra = document.getElementById("palabra");
+        /* Obtiene el div donde se encuentran las letras */
+        let letras = document.getElementById("letras");
+        /* Contador de los intentos, multiplico por 1.5 para añadirle el 50% más de intetnos */
+        let intentos = Math.trunc(palabraAleatoria.length * 1.5);
+        /* Inicializo la puntuación */
+        let puntuacion = 0;
+        /* Se guardan las letras usadas */
+        let letrasUsadas = [];
+    
+        function imprimirGuiones() {
+            /* Imprimo por pantalla tantos guiones bajos como caracteres tenga la palabra */
+            for (let i = 0; i < palabraAleatoria.length; i++) {
+                let span = document.createElement("span");
+                span.innerHTML = " _ ";
+                palabra.appendChild(span);
+            }
+        }
+    
+        function mostrarNumeroIntentos(intentos) {
+            /* Número de intentos */
+            let intentosRestantes = document.getElementById("intentos");
+            intentosRestantes.innerHTML = "Número de intentos: " + intentos;
+        }
+
+        function deshabilitarBotones() {
+            /* Obtiene el contenedor de los botones */
+            let contenedorBotones = document.getElementById("letras"); 
+            /* Obtiene todos los botones por su clase */
+            let botones = contenedorBotones.getElementsByClassName("caracteres"); 
+            /* Recorre todos los botones y los deshabilita */
+            for (let i = 0; i < botones.length; i++) {
+                botones[i].disabled = true; 
+            }
+        }
+    
+        /* Añado todas las letras al div de las letras */
+        for (let i = 65; i <= 90; i++) {
+
+            let letra = String.fromCharCode(i);
+            let button = document.createElement("button");
+            button.innerHTML = letra;
+            button.classList.add("caracteres");
+            letras.appendChild(button);
+
+            /* Capturo el evento click cada vez que clicka un boton */
+            button.addEventListener("click", function () {
+                let letra = this.innerHTML.toLowerCase();
+
+                /* Incluye las letras usadas dentro de array de letrasUsadas */
+                letrasUsadas.push(letra);
+                this.classList.add("usada");
+    
+                /* Si la letra está en la palabra entra al condicional */
+                if (palabraAleatoria.includes(letra)) {
+                    
+                    /* Busca la posición de la letra en la palabra y sustituye el guion bajo por la letra */
+                    for (let i = 0; i < palabraAleatoria.length; i++) {
+                        if (palabraAleatoria[i] === letra) { 
+                            palabra.children[i].innerHTML = letra;
+                            this.classList.add("acertada");
+                        }
+                    }
+                    puntuacion++;
+    
+                    /* Va comprobando si no incluye guion bajo, si es asi el jugador gana la partida */
+                    if (!palabra.innerHTML.includes("_")) {
+                        /* Llamo a la función que deshabilita los botones */
+                        deshabilitarBotones()
+                        /* Mensaje de victoria */
+                        Swal.fire({
+                            icon: 'success',
+                            title: '¡¡GANASTE!!',
+                            text: 'Puntuación: ' + puntuacion,
+                            showConfirmButton: true,
+                            confirmButtonText: 'Aceptar'
+                        })
+                    }
+    
+                } else {
+                    intentos--;
+    
+                    if(puntuacion == 0){
+                        puntuacion = 0;
+                    }else{
+                        puntuacion--;
+                    }
+    
+                    if (intentos === 0) {
+                        /* Llamo a la función que deshabilita los botones */
+                        deshabilitarBotones()
+                        /* Mensaje de derrota */
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'PERDISTE',
+                            text: 'Puntuación: ' + puntuacion,
+                            showConfirmButton: true,
+                            confirmButtonText: 'Aceptar'
+                        })
+                    }
+                }
+                mostrarNumeroIntentos(intentos);
+            });
+        }
+        imprimirGuiones()
+        
+    </script>
+
+</body>
+</html>
