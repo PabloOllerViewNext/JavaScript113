@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital@1&display=swap');
+
+body {
+    font-family: 'Jost', sans-serif;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#contenedorInputBoton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+table{
+    width: 500px;
+    border: 1px solid black;
+}
+
+td.resaltado {
+    transition: all 400ms;
+    background-color:rgb(139, 255, 124);
+}
+
+#fallos{
+    width: 250px;
+    height: 510px;
+    border: 1px solid black;
+    margin-left: 10px;
+    border-radius: 5PX;
+    background-color:  rgb(252, 142, 142);
+}
+
+#fallos h2{
+    margin-top: 5px;
+    text-decoration: underline;
+}
+
+#fallos li{
+    list-style: none;
+    font-size: 20px;
+}
+
+#miLista{
+    text-align: center;
+    float: left;
+}
