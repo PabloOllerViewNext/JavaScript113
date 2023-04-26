@@ -1,0 +1,30 @@
+body{
+    background-color: lightgreen !important;
+}
+.encontrada {
+    background-color: rgb(29, 134, 62);
+    color: whitesmoke;
+    border-radius: 3px;
+    transition: all 1s;
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
+table {
+    width: 100%;
+    border: solid 1px black;
+    width: 45vw;
+    margin: 0 auto;
+    user-select: none;
+    background-color: rgb(212, 248, 212) !important;
+}
+
+#textos{
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+#botonReplay{
+    background-color: green !important;
+    border-color: darkgreen !important;
+}
