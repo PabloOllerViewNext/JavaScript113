@@ -1,0 +1,134 @@
+* {
+    border-radius: 5px;
+}
+
+body{
+    overflow-x: hidden;
+}
+
+#palabraInput {
+    width: 40vw;
+    text-align: center;
+    margin: 0 auto;
+    transition: all 1s;
+}
+
+#palabraInput:focus{
+    padding: 8px;
+}
+
+#sopaDeLetras {
+    text-align: center;
+    border: 1px solid black;
+    width: 75vh;
+    margin: 0 auto;
+    user-select: none;
+}
+
+.info {
+    width: 17vw;
+    font-size: 1.3rem;
+}
+
+ul li {
+    animation: aparecer 0.4s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+    -webkit-animation: aparecer 0.4s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+}
+
+hr {
+    height: 2vh !important;
+}
+
+.acierto {
+    -webkit-animation: acertar 2s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
+    animation: acertar 2s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
+}
+
+#palabrasAdivinadas {
+    background-color: rgb(238, 147, 147);
+}
+
+
+@-webkit-keyframes aparecer {
+    0% {
+        -webkit-transform: scale(2);
+        transform: scale(2);
+        -webkit-filter: blur(4px);
+        filter: blur(4px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-filter: blur(0px);
+        filter: blur(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes aparecer {
+    0% {
+        -webkit-transform: scale(2);
+        transform: scale(2);
+        -webkit-filter: blur(4px);
+        filter: blur(4px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-filter: blur(0px);
+        filter: blur(0px);
+        opacity: 1;
+    }
+}
+
+
+
+
+
+@keyframes acertar {
+    0% {
+        -webkit-transform: rotateX(-100deg);
+        transform: rotateX(-100deg);
+        -webkit-transform-origin: top;
+        transform-origin: top;
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: rotateX(0deg);
+        transform: rotateX(0deg);
+        -webkit-transform-origin: top;
+        transform-origin: top;
+        opacity: 1;
+        background-color: rgb(130, 218, 130);
+        color: whitesmoke;
+        font-weight: bold;
+    }
+}
+
+@-webkit-keyframes acertar {
+    0% {
+        -webkit-transform: rotateX(-100deg);
+        transform: rotateX(-100deg);
+        -webkit-transform-origin: top;
+        transform-origin: top;
+        opacity: 0;
+
+    }
+
+    100% {
+        -webkit-transform: rotateX(0deg);
+        transform: rotateX(0deg);
+        -webkit-transform-origin: top;
+        transform-origin: top;
+        opacity: 1;
+
+        background-color: rgb(130, 218, 130);
+        color: whitesmoke;
+        font-weight: bold;
+    }
+}
